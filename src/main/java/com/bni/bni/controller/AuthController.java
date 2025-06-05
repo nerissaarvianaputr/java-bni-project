@@ -28,6 +28,7 @@ public class AuthController {
 
         Map<String, Object> response = new HashMap<>();
         response.put("status", 200);
+        response.put("username", username);
         response.put("message", message);
 
         return ResponseEntity.ok(response);
