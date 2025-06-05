@@ -8,31 +8,29 @@ import java.time.OffsetDateTime;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_id_seq")
+    @SequenceGenerator(name = "user_id_seq", sequenceName = "users_id_seq", allocationSize = 1)
     private Long id;
 
-    @Column(nullable = false, unique = true)
+    @Column(length = 255, nullable = false)
     private String username;
 
-    @Column(name = "password_hash", nullable = false)
+    @Column(name = "password_hash", length = 255, nullable = false)
     private String passwordHash;
-
-    @Column(nullable = false)
-    private String role;
 
     @Column(name = "created_at", nullable = false)
     private OffsetDateTime createdAt;
 
-    public User() {
-      // default constructor
-    }
+    @Column(name = "email address", length = 255)
+    private String emailAddress;
 
-    public User(String username, String passwordHash, String role, OffsetDateTime createdAt) {
-        this.username = username;
-        this.passwordHash = passwordHash;
-        this.role = role;
-        this.createdAt = createdAt;
-    }
+    @Column(name = "is_active")
+    private Boolean isActive;
+
+    @Column(name = "updated_at", nullable = false)
+    private OffsetDateTime updatedAt;
+
+    // Getters and Setters
 
     public Long getId() {
         return id;
@@ -58,19 +56,35 @@ public class User {
         this.passwordHash = passwordHash;
     }
 
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
     public OffsetDateTime getCreatedAt() {
         return createdAt;
     }
 
     public void setCreatedAt(OffsetDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public String getEmailAddress() {
+        return emailAddress;
+    }
+
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
+    }
+
+    public Boolean getIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(Boolean isActive) {
+        this.isActive = isActive;
+    }
+
+    public OffsetDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(OffsetDateTime updatedAt) {
+        this.updatedAt = updatedAt;
     }
 }
