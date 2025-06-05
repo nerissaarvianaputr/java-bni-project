@@ -8,29 +8,39 @@ import java.time.OffsetDateTime;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_id_seq")
-    @SequenceGenerator(name = "user_id_seq", sequenceName = "users_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 255, nullable = false)
+    @Column(nullable = false, unique = true)
     private String username;
 
-    @Column(name = "password_hash", length = 255, nullable = false)
-    private String passwordHash;
+    @Column(nullable = false)
+    private String password;
 
     @Column(name = "created_at", nullable = false)
     private OffsetDateTime createdAt;
 
-    @Column(name = "email address", length = 255)
+    @Column(name = "email_address", nullable = false)
     private String emailAddress;
 
-    @Column(name = "is_active")
+    @Column(name = "is_active", nullable = false)
     private Boolean isActive;
 
     @Column(name = "updated_at", nullable = false)
     private OffsetDateTime updatedAt;
 
-    // Getters and Setters
+    public User() {
+      // default constructor
+    }
+
+    public User(String username, String password, OffsetDateTime createdAt, String emailAddress, Boolean isActive, OffsetDateTime updatedAt) {
+        this.username = username;
+        this.password= password;
+        this.createdAt = createdAt;
+        this.emailAddress = emailAddress;
+        this.isActive = isActive;
+        this.updatedAt = updatedAt;
+    }
 
     public Long getId() {
         return id;
@@ -48,12 +58,12 @@ public class User {
         this.username = username;
     }
 
-    public String getPasswordHash() {
-        return passwordHash;
+        public String getPassword() {
+        return password;
     }
 
-    public void setPasswordHash(String passwordHash) {
-        this.passwordHash = passwordHash;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public OffsetDateTime getCreatedAt() {

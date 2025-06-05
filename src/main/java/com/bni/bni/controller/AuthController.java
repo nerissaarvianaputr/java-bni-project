@@ -25,13 +25,10 @@ public class AuthController {
         String username = body.get("username");
         String password = body.get("password");
         String email = body.get("email");
-
-        String message = authService.register(username, password, email);
+        String message = authService.register(username, password,email);
 
         Map<String, Object> response = new HashMap<>();
         response.put("status", 200);
-        response.put("username", username);
-        response.put("email", email);
         response.put("message", message);
 
         return ResponseEntity.ok(response);
@@ -45,13 +42,9 @@ public class AuthController {
 
         Map<String, Object> response = new HashMap<>();
         if (token != null) {
-            Map<String, Object> userDetails = authService.getUserDetails(username);
-
             response.put("status", 200);
             response.put("token", token);
-            response.put("message", "Login successful");
-            response.putAll(userDetails);
-
+            response.put("message","Login Berhasil2");
             return ResponseEntity.ok(response);
         } else {
             response.put("status", 401);
@@ -80,16 +73,12 @@ public class AuthController {
             }
 
             Claims claims = jwtUtil.getAllClaimsFromToken(token);
-            String username = claims.getSubject();
-
-            Map<String, Object> userDetails = authService.getUserDetails(username);
 
             response.put("status", 200);
-            response.put("username", username);
+            response.put("username", claims.getSubject());
             response.put("role", claims.get("role"));
             response.put("issuedAt", claims.getIssuedAt());
             response.put("expiration", claims.getExpiration());
-            response.putAll(userDetails);
 
             return ResponseEntity.ok(response);
 
