@@ -29,6 +29,9 @@ public class User {
     @Column(name = "updated_at", nullable = false)
     private OffsetDateTime updatedAt;
 
+    @Column(name = "password_hash", nullable = false)
+    private String passwordHash;
+
     public User() {
       // default constructor
     }
@@ -58,12 +61,12 @@ public class User {
         this.username = username;
     }
 
-        public String getPassword() {
-        return password;
+    public String getPasswordHash() {
+        return passwordHash;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
     }
 
     public OffsetDateTime getCreatedAt() {
