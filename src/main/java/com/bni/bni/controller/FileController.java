@@ -62,7 +62,7 @@ public class FileController {
             Resource resource = new UrlResource(filePath.toUri());
 
             if (!resource.exists()) {
-                return ResponseEntity.notFound().build();
+                return ResponseEntity.status(401).build();
             }
             String contentType = Files.probeContentType(filePath);
             if (contentType == null) {
