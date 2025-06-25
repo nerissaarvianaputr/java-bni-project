@@ -16,4 +16,4 @@ jobs:
         run: |
           curl -X POST "https://api.telegram.org/bot8006163434:AAFglGBFQZssn33_w4E1ZF08UTMVxkj58kA/sendMessage" \
             -d chat_id=742642835 \
-            -d text="🚨 Merge to Main/Master Branch 🚨\nA merge has been made to the main/master branch. Please review the changes!"
+            -d text="🚨 Merge to Main/Master Branch 🚨\nA merge has been made to the main/master branch. Diganti oleh Nerissa"
